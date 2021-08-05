@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Coding Dojo Ninja Game</title>
+</head>
+<style>
+    
+        {% if loc=="mountain" %}
+            .game-bg {
+            background-image: url('/static/mountain.jpg');
+            background-size: cover;
+            }   
+        {% elif loc=="meadow" %}
+            .game-bg {
+            background-image: url('/static/meadow.jpg');
+            background-size: cover;
+            }
+
+        {% elif loc == "forest" %}
+            .game-bg {
+            background-image: url('/static/forest.jpg');
+            background-size: cover;
+            }
+        {% endif %}
+</style>
+
+<body>
+    <nav>
+        <h1>Coding Ninja Vs Bugs</h1><a href="/logout"><span>Logout</span></a>
+    </nav>
+    <div class="container2 game-bg" id="game">
+        <div class="row game-top">
+            <p><span class="red">&#10084;</span>: {{character.health}}  &#127754;{{character.mana}}  &#9889;:
+                {{character.stamina}}</p><p> <span class="bold">{{character.name}}: </span> LvL: {{character.level}} XP:{{character.xp}}</p>
+        </div>
+        <div class="directions">
+            <form action="/move" method="post" id = "move">
+                <p>
+                    <input type="button" name="direction" value="N" onclick="animate_move_up(this)">
+                </p>
+                <p>
+                    <input type="button" name="direction" value="W"  onclick="animate_move_right(this)">
+                    <input type="button" name="direction" value="E" id = "east" onclick="animate_move_left(this)">
+                </p>
+                <p>
+                    <input type="button" name="direction" value="S" onclick="animate_move_down(this)">
+                    <input type="hidden" name="user_id" value="{{character.user_id}}">
+                    <input type="hidden" name="direction" id = "direct" value = "">
+                </p>
+                {% with messages = get_flashed_messages() %}     
+                    {% if messages %}                            
+                         {% for message in messages %}           
+                            <p>{{message}}</p>                   
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </form>
+        </div>
+        <div class = "ninja" style =" position:relative; width:100px; height: 100%; "> 
+            <img class="ninja-pic" id="ninja-pic" style="position:absolute; bottom: -10px; left: 150px; width:59px;  " src="{{ url_for('static', filename='img/right1.png') }}">
+        </div>
+        {% if character.enemy != {} %}
+            <div class="enemy" style=" position:relative">
+                <progress id="health" value="{{character.enemy.health}}" max = '{{character.enemy.max_health}}'; style="position:absolute; bottom: 180px; left: 330px; "></progress>
+                {% if (character.enemy.id%2) == 0 %}
+                <img class="bug-pic" id="bug-pic1" style="position:absolute; bottom: -10px; left: 280px; width:200px;  " src="{{ url_for('static', filename='img/dragon2.png') }}">
+                {% else %}
+                <img class="bug-pic" id="bug-pic2" style="position:absolute; bottom: -10px; left: 280px; width:200px;  " src="{{ url_for('static', filename='img/syntax.png') }}">
+                {% endif %}
+            </div>
+            
+        {% endif %}
+                
+    <p>x: {{character.loc_x}} y: {{character.loc_y}}</p>
+    <div class="row">
+        {% if character.enemy=={} %}
+        <form action ="/sleep" id="sleep-form">
+        <input type="button" id="sleep-btn" name ="sleep" value="sleep" onclick="slp();">
+        </form>
+        {% endif %}
+        <form action="/damage" method="post">
+        {% for spell in character.spells %}
+        <input type="submit" id="{{spell.name}}" name ="name" value="{{spell.name}}" >
+        {% endfor %}
+        </form>
+    </div>    
+    
+    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

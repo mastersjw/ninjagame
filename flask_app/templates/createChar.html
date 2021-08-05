@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Ninja Game</title>
+</head>
+
+<body>
+    <nav>
+        <h1>Coding Ninja Vs Bugs</h1><a href="/logout"><span>Logout</span></a>
+    </nav>
+    <div class="container opening-bg">
+        <div class="col bold">
+            
+            <form action="/create" method="post">
+                <h1>Customize Character</h1>
+                <p>Name:</p>
+                <input type="text" name="name" id="">
+                <p id="st">Strength: 5</p>
+                <input type="range" name="strength" id="strength" min = "1" max="15" value = "5" oninput = "balance(this)">
+                <p id ="it">Intelligence: 6</p>
+                <input type="range" name="intelligence" id="intelligence" min = "1" max="15" value ="5" oninput="balance(this)">
+                <p id="dex">Dexterity: 6</p>
+                <input type="range" name="dexterity" id = "dexterity" min = "1" max="15" value ="5" oninput = "balance(this)">
+                <p id ="max">Points to Use: 0 </p>
+                <input type ="hidden" name ="user_id"  value = "{{session['uuid']}}">
+                <p><button>Create</button></p>
+            </form>
+        </div>
+        <div class="col">
+            <img class="login-char"  src="{{ url_for('static', filename='ninja.png') }}">
+        </div>
+    </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

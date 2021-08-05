@@ -1,0 +1,141 @@
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: lightgray;
+    overflow: hidden;
+}
+
+.container{
+    margin: 2% auto;
+    display: flex;
+    justify-content: center;
+    padding: 100px;
+    gap: 80px;
+    width: 40%;
+    height: 60%;
+}
+
+ul{
+    border: 2px solid black;
+    width:80%;
+    min-height: 50px;
+    max-height: 300px;
+    overflow: auto;
+    margin: 50px 0px;
+}
+
+.col{
+    display: flex;
+    flex-direction: column;
+   
+    width: 70%;
+}
+
+h1{
+    /* width: 100%; */
+}
+
+table{
+    width: 200px;
+}
+
+.opening-bg{
+    background-image: url("opening.jpg");
+    background-size: cover;
+}
+
+.login-char{
+    width: 300px;
+}
+
+nav{
+    display: flex;
+    background-color: darkgray;
+    align-items:center;
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+    
+}
+nav h1{
+    width:550px;
+    font-size: 3em;
+    font-weight: bold;
+}
+nav a{
+    color:white;
+    text-decoration: none;
+    padding: 10px;
+    /* margin:  0px 25% 0px auto; */
+    background-color: blue;
+    box-shadow: 3px 3px black;
+    height: 20px;
+    
+    
+}
+
+.container2{
+    position: relative;
+    margin: 2% auto;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    width: 500px;
+    height: 60%;
+    overflow: hidden;
+}
+.row{
+    width:100%;
+}
+.game-top{
+    background: black;
+    color: white;
+    font-size: 1.1em;
+    width: 100%;
+}
+.directions{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 20%;
+    
+}
+.directions p{
+        display:flex;
+        gap: 10px;
+        justify-content: center;
+}
+
+.red{
+    color:red;
+}
+.bold{
+    font-weight: bold;
+}
+.col form{
+    background-color: rgba(153,189,85,.7);
+}
+
+
+
+
+progress[value] {
+    /* Reset the default appearance */
+    -webkit-appearance: none;
+     appearance: none;
+  
+    width: 100px;
+    height: 10px;
+  }
+
+  progress[value]::-webkit-progress-bar {
+    background-color: rgb(167, 147, 147);
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+  }
+
+  progress[value]::-webkit-progress-value {
+    background-color: red;
+    border-radius: 2px; 
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+  }

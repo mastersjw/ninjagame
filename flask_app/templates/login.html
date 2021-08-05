@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Login and Registration</title>
+</head>
+<body>
+    <nav>
+        <h1>Coding Ninja vs Bugs</h1>
+    </nav>
+    <div class="container">
+        <div class="col">
+            <h1>REGISTER</h1>
+            <form action="/register" method="POST">
+            <p>Email</p>
+            <p><input type="text" name="email" id=""></p>
+            <p>Password</p>
+            <p><input type="password" name="password" id=""></p>
+            <p>Confirm Password</p>
+            <p><input type="password" name="cpassword" id=""></p>
+            <p><button>Register</button></p>
+            </form>
+            <div>
+                    {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+                    {% if messages %}                            <!-- check if there are any messages -->
+                        {% for message in messages %}            <!-- loop through the messages -->
+                            <p style="border: 2px solid red; width: 400px; height: 50px; text-align: center;">{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+        <div class="col">
+            <h1>LOGIN</h1>
+            <form action="/login" method="post">
+                <p>Email:</p>
+                <input type="text" name="email" id="">
+                <p>Password:</p>
+                <input type="password" name="password" id="">
+                <p><button>Login</button></p>
+            </form>
+            
+        </div>
+    </div>
+</body>
+</html>
